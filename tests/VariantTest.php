@@ -1,15 +1,16 @@
 <?php
 
-use BoldApps\ShopifyToolkit\Services\Client;
 use BoldApps\ShopifyToolkit\Models\Variant as ShopifyVariant;
+use BoldApps\ShopifyToolkit\Services\Client;
 use BoldApps\ShopifyToolkit\Services\Variant as VariantService;
+use PHPUnit\Framework\TestCase;
 
-class VariantTest extends \PHPUnit\Framework\TestCase
+class VariantTest extends TestCase
 {
     /** @var VariantService */
     private $variantService;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         /** @var Client $client */
         $client = $this->createMock(Client::class);
@@ -19,7 +20,7 @@ class VariantTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function ShopifyVariantSerializesProperly()
+    public function shopifyVariantSerializesProperly()
     {
         $variantEntity = $this->createVariantEntity();
 
@@ -32,7 +33,7 @@ class VariantTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function ShopifyVariantDeserializesProperly()
+    public function shopifyVariantDeserializesProperly()
     {
         $variantJson = $this->getVariantJson();
         $jsonArray = (array) json_decode($variantJson, true);
@@ -46,7 +47,7 @@ class VariantTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function ShopifyVariantWithoutInventorySerializesProperly()
+    public function shopifyVariantWithoutInventorySerializesProperly()
     {
         $variantEntity = $this->createVariantEntity();
 
@@ -75,7 +76,6 @@ class VariantTest extends \PHPUnit\Framework\TestCase
             "position": 1,
             "inventory_policy": "deny",
             "compare_at_price": null,
-            "fulfillment_service": "manual",
             "inventory_management": null,
             "option1": "Spooky",
             "option2": null,
@@ -106,7 +106,6 @@ class VariantTest extends \PHPUnit\Framework\TestCase
             'sku' => '',
             'position' => 1,
             'inventory_policy' => 'deny',
-            'fulfillment_service' => 'manual',
             'option1' => 'Spooky',
             'created_at' => '2017-12-08T13:35:42-05:00',
             'updated_at' => '2017-12-21T09:49:41-05:00',
@@ -133,7 +132,6 @@ class VariantTest extends \PHPUnit\Framework\TestCase
             'sku' => '',
             'position' => 1,
             'inventory_policy' => 'deny',
-            'fulfillment_service' => 'manual',
             'option1' => 'Spooky',
             'created_at' => '2017-12-08T13:35:42-05:00',
             'updated_at' => '2017-12-21T09:49:41-05:00',

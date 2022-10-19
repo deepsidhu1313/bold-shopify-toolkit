@@ -7,8 +7,9 @@ use BoldApps\ShopifyToolkit\Services\Metafield as MetafieldService;
 use BoldApps\ShopifyToolkit\Services\Option as OptionService;
 use BoldApps\ShopifyToolkit\Services\Product as ProductService;
 use BoldApps\ShopifyToolkit\Services\Variant as VariantService;
+use PHPUnit\Framework\TestCase;
 
-class ProductTest extends \PHPUnit\Framework\TestCase
+class ProductTest extends TestCase
 {
     /** @var ProductService */
     private $productService;
@@ -25,7 +26,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
     /** @var MetafieldService */
     private $metafieldService;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         /** @var Client $client */
         $client = $this->createMock(Client::class);
@@ -47,7 +48,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function ShopifyProductSerializesProperly()
+    public function shopifyProductSerializesProperly()
     {
         /** @var ShopifyProduct $productEntity */
         $productEntity = $this->productService->createFromArray($this->getProductArray());
@@ -61,7 +62,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function ShopifyProductDeserializesProperly()
+    public function shopifyProductDeserializesProperly()
     {
         $productJson = $this->getProductJson();
         $jsonArray = (array) json_decode($productJson, true);
@@ -99,7 +100,6 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                     "position": 1,
                     "inventory_policy": "continue",
                     "compare_at_price": null,
-                    "fulfillment_service": "manual",
                     "inventory_management": "shopify",
                     "option1": "Pink",
                     "option2": null,
@@ -127,7 +127,6 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                     "position": 2,
                     "inventory_policy": "continue",
                     "compare_at_price": null,
-                    "fulfillment_service": "manual",
                     "inventory_management": "shopify",
                     "option1": "Red",
                     "option2": null,
@@ -155,7 +154,6 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                     "position": 3,
                     "inventory_policy": "continue",
                     "compare_at_price": null,
-                    "fulfillment_service": "manual",
                     "inventory_management": "shopify",
                     "option1": "Green",
                     "option2": null,
@@ -183,7 +181,6 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                     "position": 4,
                     "inventory_policy": "continue",
                     "compare_at_price": null,
-                    "fulfillment_service": "manual",
                     "inventory_management": "shopify",
                     "option1": "Black",
                     "option2": null,
@@ -295,7 +292,6 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                     'sku' => 'IPOD2008PINK',
                     'position' => 1,
                     'inventory_policy' => 'continue',
-                    'fulfillment_service' => 'manual',
                     'inventory_management' => 'shopify',
                     'option1' => 'Pink',
                     'created_at' => '2018-09-25T15:15:37-04:00',
@@ -319,7 +315,6 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                     'sku' => 'IPOD2008RED',
                     'position' => 2,
                     'inventory_policy' => 'continue',
-                    'fulfillment_service' => 'manual',
                     'inventory_management' => 'shopify',
                     'option1' => 'Red',
                     'created_at' => '2018-09-25T15:15:37-04:00',
@@ -342,7 +337,6 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                     'sku' => 'IPOD2008GREEN',
                     'position' => 3,
                     'inventory_policy' => 'continue',
-                    'fulfillment_service' => 'manual',
                     'inventory_management' => 'shopify',
                     'option1' => 'Green',
                     'created_at' => '2018-09-25T15:15:37-04:00',
@@ -365,7 +359,6 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                     'sku' => 'IPOD2008BLACK',
                     'position' => 4,
                     'inventory_policy' => 'continue',
-                    'fulfillment_service' => 'manual',
                     'inventory_management' => 'shopify',
                     'option1' => 'Black',
                     'created_at' => '2018-09-25T15:15:37-04:00',

@@ -2,13 +2,14 @@
 
 use BoldApps\ShopifyToolkit\Models\User as ShopifyUser;
 use BoldApps\ShopifyToolkit\Services\User as UserService;
+use PHPUnit\Framework\TestCase;
 
-class UserTest extends \PHPUnit\Framework\TestCase
+class UserTest extends TestCase
 {
     /** @var UserService */
     private $userService;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         /** @var \BoldApps\ShopifyToolkit\Services\Client $client */
         $client = $this->createMock(\BoldApps\ShopifyToolkit\Services\Client::class);
@@ -18,7 +19,7 @@ class UserTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function ShopifyRefundSerializesProperly()
+    public function shopifyRefundSerializesProperly()
     {
         $userEntity = new ShopifyUser();
         $userEntity->setId(55347909);
@@ -47,7 +48,7 @@ class UserTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function ShopifyUserDeserializesProperly()
+    public function shopifyUserDeserializesProperly()
     {
         $expected = new ShopifyUser();
         $expected->setId(55347909);
@@ -66,7 +67,7 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $expected->setPhoneValidated(true);
         $expected->setTfaEnabled(false);
 
-        //from the shopify documentation
+        // from the shopify documentation
         $userJson = $this->getUserJson();
         $jsonArray = (array) json_decode($userJson, true);
 

@@ -1,15 +1,16 @@
 <?php
 
-use BoldApps\ShopifyToolkit\Services\Client;
 use BoldApps\ShopifyToolkit\Models\Fulfillment as ShopifyFulfillment;
+use BoldApps\ShopifyToolkit\Services\Client;
 use BoldApps\ShopifyToolkit\Services\Fulfillment as FulfillmentService;
+use PHPUnit\Framework\TestCase;
 
-class FulfillmentTest extends \PHPUnit\Framework\TestCase
+class FulfillmentTest extends TestCase
 {
     /** @var FulfillmentService */
     private $fulfillmentService;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         /** @var Client $client */
         $client = $this->createMock(Client::class);
@@ -19,7 +20,7 @@ class FulfillmentTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function ShopifyFulfillmentSerializesProperly()
+    public function shopifyFulfillmentSerializesProperly()
     {
         $fulfillmentEntity = $this->createFulfillmentEntity();
 
@@ -32,7 +33,7 @@ class FulfillmentTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function ShopifyFulfillmentDeserializesProperly()
+    public function shopifyFulfillmentDeserializesProperly()
     {
         $fulfillmentJson = $this->getFulfillmentJson();
         $jsonArray = (array) json_decode($fulfillmentJson, true);
@@ -79,7 +80,6 @@ class FulfillmentTest extends \PHPUnit\Framework\TestCase
                     "sku": "",
                     "variant_title": "Small",
                     "vendor": "briannam-test-1",
-                    "fulfillment_service": "manual",
                     "product_id": 588916686859,
                     "requires_shipping": true,
                     "taxable": true,
@@ -194,7 +194,6 @@ class FulfillmentTest extends \PHPUnit\Framework\TestCase
                     'sku' => '',
                     'variant_title' => 'Small',
                     'vendor' => 'briannam-test-1',
-                    'fulfillment_service' => 'manual',
                     'product_id' => 588916686859,
                     'requires_shipping' => true,
                     'taxable' => true,
