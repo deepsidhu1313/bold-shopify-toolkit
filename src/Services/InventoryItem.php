@@ -21,7 +21,7 @@ class InventoryItem extends CollectionEntity
      * @param       $id
      * @param array $filter
      *
-     * @return ShopifyInventoryItem | object
+     * @return ShopifyInventoryItem|object
      */
     public function getById($id, $filter = [])
     {
@@ -47,12 +47,13 @@ class InventoryItem extends CollectionEntity
     }
 
     /**
-     * @return ShopifyInventoryItem | object
+     * @return ShopifyInventoryItem|object
      */
     public function update(ShopifyInventoryItem $inventoryItem)
     {
         $serializedModel = ['inventory_item' => $this->serializeModel($inventoryItem)];
         $raw = $this->client->put("{$this->getApiBasePath()}/inventory_items/{$inventoryItem->getId()}.json", [], $serializedModel);
+
         return $this->unserializeModel($raw['inventory_item'], ShopifyInventoryItem::class);
     }
 }
